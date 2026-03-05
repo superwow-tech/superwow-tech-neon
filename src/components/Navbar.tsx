@@ -20,10 +20,10 @@ export default function Navbar() {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
     setIsOpen(false);
-    gsap.to(window, { 
-      duration: 1.2, 
-      scrollTo: { y: target, autoKill: true }, 
-      ease: "power3.inOut" 
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: { y: target, autoKill: true },
+      ease: "power3.inOut"
     });
   };
 
@@ -35,10 +35,10 @@ export default function Navbar() {
     <div className="fixed top-4 left-4 right-4 z-50 flex justify-center pointer-events-none">
       {/* Desktop Nav */}
       <nav className="hidden md:flex items-center justify-between bg-white/5 backdrop-blur-md rounded-full px-8 py-4 w-full max-w-6xl pointer-events-auto">
-        <motion.a 
-          href="#home" 
+        <motion.a
+          href="#home"
           onClick={(e) => handleScroll(e, '#home')}
-          className="font-display text-2xl font-bold tracking-tighter text-white uppercase hover:text-lime transition-colors"
+          className="font-display text-2xl font-normal tracking-normal text-white uppercase hover:text-lime transition-colors"
           animate={{ opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -46,16 +46,16 @@ export default function Navbar() {
         </motion.a>
         <div className="flex items-center gap-8">
           {links.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
+            <a
+              key={link.name}
+              href={link.href}
               onClick={(e) => handleScroll(e, link.href)}
               className="font-sans text-sm uppercase tracking-widest text-white/70 hover:text-lime transition-colors"
             >
               {link.name}
             </a>
           ))}
-          <button 
+          <button
             onClick={toggleLanguage}
             className="font-sans text-sm font-bold uppercase tracking-widest text-lime hover:text-white transition-colors"
           >
@@ -65,30 +65,30 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Nav */}
-      <motion.nav 
+      <motion.nav
         initial={false}
         animate={{ height: isOpen ? 'auto' : '64px' }}
         transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
         className="md:hidden w-full bg-white/5 backdrop-blur-md rounded-[2rem] overflow-hidden pointer-events-auto relative"
       >
         <div className="flex items-center justify-between h-[64px] px-6">
-          <motion.a 
-            href="#home" 
+          <motion.a
+            href="#home"
             onClick={(e) => handleScroll(e, '#home')}
-            className="font-display text-xl font-bold tracking-tighter text-white uppercase hover:text-lime transition-colors"
+            className="font-display text-xl font-normal tracking-normal text-white uppercase hover:text-lime transition-colors"
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
             Superwow <span className="text-lime">Tech</span>
           </motion.a>
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={toggleLanguage}
               className="font-sans text-sm font-bold uppercase tracking-widest text-lime hover:text-white transition-colors"
             >
               {language === 'en' ? 'LT' : 'EN'}
             </button>
-            <button 
+            <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-white/70 hover:text-lime transition-colors font-sans text-sm uppercase tracking-widest w-[60px] flex justify-end overflow-hidden"
             >
@@ -110,7 +110,7 @@ export default function Navbar() {
 
         <AnimatePresence>
           {isOpen && (
-            <motion.div 
+            <motion.div
               initial="closed"
               animate="open"
               exit="closed"
@@ -121,16 +121,16 @@ export default function Navbar() {
               className="flex flex-col px-6 pb-8 pt-2 gap-6 text-right relative"
             >
               {links.map((link) => (
-                <motion.div 
-                  key={link.name} 
+                <motion.div
+                  key={link.name}
                   className="relative z-10"
                   variants={{
                     open: { y: 0, opacity: 1, transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } },
                     closed: { y: 10, opacity: 0, transition: { duration: 0.3, ease: [0.76, 0, 0.24, 1] } }
                   }}
                 >
-                  <a 
-                    href={link.href} 
+                  <a
+                    href={link.href}
                     onClick={(e) => handleScroll(e, link.href)}
                     className="font-sans text-lg uppercase tracking-widest text-white/70 hover:text-lime transition-colors block"
                   >

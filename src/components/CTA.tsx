@@ -28,8 +28,8 @@ export default function CTA() {
 
   const itemVariants = {
     hidden: { y: 50, opacity: 0 },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
       transition: {
         duration: 0.8,
@@ -40,9 +40,14 @@ export default function CTA() {
 
   return (
     <section id="contact" className="py-16 md:py-24 bg-charcoal text-white flex flex-col justify-center relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(203,246,104,0.1)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(248,113,200,0.15)_0%,transparent_50%)] animate-pulse" style={{ animationDuration: '5s' }} />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(203,246,104,0.15)_0%,transparent_50%)] animate-pulse" style={{ animationDuration: '7s' }} />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(203,246,104,0.1)_0%,transparent_40%)] animate-pulse" style={{ animationDuration: '4s' }} />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,rgba(248,113,200,0.1)_0%,transparent_40%)] animate-pulse" style={{ animationDuration: '6s' }} />
+      </div>
 
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -53,8 +58,8 @@ export default function CTA() {
           <motion.div variants={itemVariants} className="mb-6 md:mb-8">
             <h2 className="font-sans text-xs md:text-sm tracking-[0.2em] uppercase text-white/50">{t('contact.title')}</h2>
           </motion.div>
-          <motion.h3 variants={itemVariants} className="font-display text-[18vw] md:text-[12vw] leading-[0.85] tracking-tighter uppercase mb-6 drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-            {t('contact.heading1')} <br/><span className="text-lime">{t('contact.heading2')}</span>
+          <motion.h3 variants={itemVariants} className="font-display text-[18vw] md:text-[12vw] leading-[0.85] tracking-normal uppercase mb-6 drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+            {t('contact.heading1')} <br /><span className="text-lime">{t('contact.heading2')}</span>
           </motion.h3>
 
           <motion.p variants={itemVariants} className="font-sans text-base md:text-xl text-white/70 max-w-2xl mb-12 md:mb-0">
@@ -65,9 +70,9 @@ export default function CTA() {
         <motion.form variants={itemVariants} onSubmit={handleSubmit} className="w-full md:w-1/2 max-w-md flex flex-col gap-4 text-left">
           <div className="flex flex-col gap-1">
             <label htmlFor="name" className="font-sans text-xs uppercase tracking-widest text-white/50 ml-4">{t('contact.name')}</label>
-            <input 
-              type="text" 
-              id="name" 
+            <input
+              type="text"
+              id="name"
               required
               className="bg-white/5 rounded-full px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-lime transition-all"
               placeholder="John Doe"
@@ -75,9 +80,9 @@ export default function CTA() {
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="email" className="font-sans text-xs uppercase tracking-widest text-white/50 ml-4">{t('contact.email')}</label>
-            <input 
-              type="email" 
-              id="email" 
+            <input
+              type="email"
+              id="email"
               required
               className="bg-white/5 rounded-full px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-lime transition-all"
               placeholder="john@example.com"
@@ -85,21 +90,21 @@ export default function CTA() {
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="message" className="font-sans text-xs uppercase tracking-widest text-white/50 ml-4">{t('contact.message')}</label>
-            <textarea 
-              id="message" 
+            <textarea
+              id="message"
               required
               rows={4}
               className="bg-white/5 rounded-3xl px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-lime transition-all resize-none"
               placeholder="..."
             />
           </div>
-          
-          <motion.button 
-            type="submit" 
+
+          <motion.button
+            type="submit"
             disabled={formState !== 'idle'}
             animate={
-              formState === 'success' 
-                ? { scale: [1, 1.05, 1], backgroundColor: ['#cbf668', '#4ade80', '#cbf668'] } 
+              formState === 'success'
+                ? { scale: [1, 1.05, 1], backgroundColor: ['#cbf668', '#4ade80', '#cbf668'] }
                 : { scale: 1, backgroundColor: '#cbf668' }
             }
             transition={{ duration: 0.5 }}

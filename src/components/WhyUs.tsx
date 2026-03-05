@@ -19,7 +19,7 @@ export default function WhyUs() {
 
   useGSAP(() => {
     const items = gsap.utils.toArray('.step-item');
-    
+
     items.forEach((item: any) => {
       gsap.from(item, {
         y: 40,
@@ -48,8 +48,8 @@ export default function WhyUs() {
 
         <div className="flex flex-col">
           {steps.map((step, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               className="step-item flex flex-col md:flex-row md:items-center justify-between py-8 md:py-10 border-b border-white/10 group transition-colors"
             >
               <div className="flex items-center gap-8 md:gap-16 mb-4 md:mb-0">

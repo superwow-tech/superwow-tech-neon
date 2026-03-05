@@ -2,12 +2,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-charcoal text-white pt-12 pb-8 border-t border-white/10 relative overflow-hidden">
+    <footer className="bg-[url('@/assets/images/howItWorks.png')] bg-cover bg-center text-white pt-12 pb-8 relative overflow-hidden">
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-10">
           {/* Brand */}
           <div className="max-w-sm">
-            <h2 className="font-display text-2xl font-bold tracking-tighter text-white uppercase mb-4">
+            <h2 className="font-display text-2xl font-normal tracking-normal text-white uppercase mb-4">
               Superwow <span className="text-lime">Tech</span>
             </h2>
             <p className="text-white/60 text-sm mb-6 uppercase tracking-widest">
@@ -34,9 +35,6 @@ export default function Footer() {
           <p>&copy; {currentYear} SUPERWOW TECH. All rights reserved.</p>
         </div>
       </div>
-
-      {/* Background elements */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-lime/5 blur-[120px] rounded-full pointer-events-none" />
     </footer>
   );
 }
