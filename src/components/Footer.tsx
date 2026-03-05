@@ -2,8 +2,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[url('@/assets/images/howItWorks.png')] bg-cover bg-center text-white pt-12 pb-8 relative overflow-hidden">
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
+    <footer className="bg-charcoal text-white pt-12 pb-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-10">
           {/* Brand */}
