@@ -6,7 +6,6 @@
 import { useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import Lenis from 'lenis';
-import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import WhatWeBuild from './components/WhatWeBuild';
@@ -54,7 +53,6 @@ export default function App() {
           className="fixed top-0 left-0 right-0 h-1 bg-lime z-[100] origin-left"
           style={{ scaleX }}
         />
-        <CustomCursor />
         <Navbar />
         <Hero />
         <WhatWeBuild />

@@ -17,7 +17,7 @@ export default function WhatWeBuild() {
   const marqueeItems = [...items, ...items, ...items, ...items];
 
   return (
-    <section id="build" className="w-full bg-black py-6 overflow-hidden">
+    <section id="build" className="w-full bg-[#110F1B] py-6 overflow-hidden">
       <div className="flex whitespace-nowrap animate-marquee">
         {marqueeItems.map((item, index) => (
           <div key={index} className="flex items-center">

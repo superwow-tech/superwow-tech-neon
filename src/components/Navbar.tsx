@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Menu, X } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { useLanguage } from '../context/LanguageContext';
@@ -83,26 +83,20 @@ export default function Navbar() {
           </motion.a>
           <div className="flex items-center gap-4">
             <button
-              onClick={toggleLanguage}
-              className="font-sans text-sm font-bold uppercase tracking-widest text-lime hover:text-white transition-colors"
-            >
-              {language === 'en' ? 'LT' : 'EN'}
-            </button>
-            <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white/70 hover:text-lime transition-colors font-sans text-sm uppercase tracking-widest w-[60px] flex justify-end overflow-hidden"
+              className="text-white/70 hover:text-lime transition-colors flex items-center justify-center w-10 h-10 overflow-hidden"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
               <AnimatePresence mode="wait">
-                <motion.span
+                <motion.div
                   key={isOpen ? 'close' : 'menu'}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -20, opacity: 0 }}
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="block"
                 >
-                  {isOpen ? t('nav.close') : t('nav.menu')}
-                </motion.span>
+                  {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </motion.div>
               </AnimatePresence>
             </button>
           </div>
@@ -138,6 +132,23 @@ export default function Navbar() {
                   </a>
                 </motion.div>
               ))}
+              <motion.div
+                className="relative z-10 pt-4 mt-2 border-t border-white/10"
+                variants={{
+                  open: { y: 0, opacity: 1, transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } },
+                  closed: { y: 10, opacity: 0, transition: { duration: 0.3, ease: [0.76, 0, 0.24, 1] } }
+                }}
+              >
+                <button
+                  onClick={() => {
+                    toggleLanguage();
+                    setIsOpen(false);
+                  }}
+                  className="font-sans text-lg uppercase tracking-widest text-lime hover:text-white transition-colors block w-full text-right"
+                >
+                  {language === 'en' ? 'SWITCH TO LT' : 'SWITCH TO EN'}
+                </button>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>

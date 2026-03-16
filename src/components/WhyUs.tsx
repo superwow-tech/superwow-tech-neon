@@ -60,7 +60,7 @@ export default function WhyUs() {
                   {step.title}
                 </h3>
               </div>
-              <span className="font-sans text-xs tracking-[0.2em] uppercase text-white/40 md:text-right">
+              <span className="font-sans text-xs tracking-[0.2em] uppercase text-[#ad6d97] md:text-right">
                 {step.tag}
               </span>
             </div>

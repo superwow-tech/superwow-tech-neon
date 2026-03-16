@@ -39,92 +39,98 @@ export default function CTA() {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-charcoal text-white flex flex-col justify-center relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(248,113,200,0.15)_0%,transparent_50%)] animate-pulse" style={{ animationDuration: '5s' }} />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(203,246,104,0.15)_0%,transparent_50%)] animate-pulse" style={{ animationDuration: '7s' }} />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(203,246,104,0.1)_0%,transparent_40%)] animate-pulse" style={{ animationDuration: '4s' }} />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,rgba(248,113,200,0.1)_0%,transparent_40%)] animate-pulse" style={{ animationDuration: '6s' }} />
-      </div>
+    <section id="contact" className="py-24 md:py-32 bg-[#110F1B] text-white flex flex-col justify-center relative overflow-hidden">
+      {/* Background radial gradient matches What We Build slightly */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(203,246,104,0.03)_0%,transparent_70%)]" />
 
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10 flex flex-col md:flex-row items-start justify-between gap-12 md:gap-24 text-left"
+        className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-24 text-left"
       >
-        <div className="flex-1">
-          <motion.div variants={itemVariants} className="mb-6 md:mb-8">
+        {/* Left Column - Massive Text */}
+        <div className="flex-1 w-full lg:w-3/5 flex flex-col lg:justify-between min-h-0 lg:min-h-[400px]">
+          <motion.div variants={itemVariants}>
             <h2 className="font-sans text-xs md:text-sm tracking-[0.2em] uppercase text-white/50">{t('contact.title')}</h2>
           </motion.div>
-          <motion.h3 variants={itemVariants} className="font-display text-[18vw] md:text-[12vw] leading-[0.85] tracking-normal uppercase mb-6 drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-            {t('contact.heading1')} <br /><span className="text-lime">{t('contact.heading2')}</span>
-          </motion.h3>
+          
+          <div className="mt-8 lg:mt-auto">
+            <motion.h3 variants={itemVariants} className="font-['League_Gothic'] text-[clamp(4.5rem,14vw,220px)] lg:text-[clamp(5rem,14vw,220px)] leading-[0.8] tracking-normal uppercase mb-8 md:mb-16 whitespace-nowrap">
+              <span className="text-white block">{t('contact.heading1')}</span>
+              <span className="text-lime block">{t('contact.heading2')}</span>
+            </motion.h3>
 
-          <motion.p variants={itemVariants} className="font-sans text-base md:text-xl text-white/70 max-w-2xl mb-12 md:mb-0">
-            {t('contact.desc')}
-          </motion.p>
+            <motion.p variants={itemVariants} className="font-sans text-sm md:text-base text-white/70">
+              {t('contact.desc')}
+            </motion.p>
+          </div>
         </div>
 
-        <motion.form variants={itemVariants} onSubmit={handleSubmit} className="w-full md:w-1/2 max-w-md flex flex-col gap-4 text-left">
-          <div className="flex flex-col gap-1">
-            <label htmlFor="name" className="font-sans text-xs uppercase tracking-widest text-white/50 ml-4">{t('contact.name')}</label>
+        {/* Right Column - Minimal Form */}
+        <motion.form variants={itemVariants} onSubmit={handleSubmit} className="w-full lg:w-2/5 flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="name" className="font-sans text-xs font-semibold uppercase tracking-widest text-white/70 ml-4">{t('contact.name')}</label>
             <input
               type="text"
               id="name"
               required
-              className="bg-white/5 rounded-full px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-lime transition-all"
+              className="bg-white/5 rounded-full px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-lime transition-all font-sans text-sm md:text-base"
               placeholder="John Doe"
             />
           </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="email" className="font-sans text-xs uppercase tracking-widest text-white/50 ml-4">{t('contact.email')}</label>
+          
+          <div className="flex flex-col gap-2">
+            <label htmlFor="email" className="font-sans text-xs font-semibold uppercase tracking-widest text-white/70 ml-4">{t('contact.email')}</label>
             <input
               type="email"
               id="email"
               required
-              className="bg-white/5 rounded-full px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-lime transition-all"
+              className="bg-white/5 rounded-full px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-lime transition-all font-sans text-sm md:text-base"
               placeholder="john@example.com"
             />
           </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="message" className="font-sans text-xs uppercase tracking-widest text-white/50 ml-4">{t('contact.message')}</label>
+          
+          <div className="flex flex-col gap-2">
+            <label htmlFor="message" className="font-sans text-xs font-semibold uppercase tracking-widest text-white/70 ml-4">{t('contact.message')}</label>
             <textarea
               id="message"
               required
               rows={4}
-              className="bg-white/5 rounded-3xl px-6 py-4 text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-lime transition-all resize-none"
+              className="bg-white/5 rounded-3xl px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-lime transition-all resize-none font-sans text-sm md:text-base"
               placeholder="..."
             />
           </div>
 
-          <motion.button
-            type="submit"
-            disabled={formState !== 'idle'}
-            animate={
-              formState === 'success'
-                ? { scale: [1, 1.05, 1], backgroundColor: ['#cbf668', '#4ade80', '#cbf668'] }
-                : { scale: 1, backgroundColor: '#cbf668' }
-            }
-            transition={{ duration: 0.5 }}
-            className="mt-4 relative inline-block text-charcoal font-display text-xl uppercase px-10 py-5 rounded-full hover:scale-105 transition-transform disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed text-center overflow-hidden"
-          >
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={formState}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="block"
-              >
-                {formState === 'idle' && t('contact.send')}
-                {formState === 'submitting' && t('contact.sending')}
-                {formState === 'success' && t('contact.sent')}
-              </motion.span>
-            </AnimatePresence>
-          </motion.button>
+          <div className="w-full mt-4">
+            <motion.button
+              type="submit"
+              disabled={formState !== 'idle'}
+              animate={
+                formState === 'success'
+                  ? { scale: [1, 1.02, 1], backgroundColor: ['#cbf668', '#4ade80', '#cbf668'] }
+                  : { scale: 1, backgroundColor: '#cbf668' }
+              }
+              transition={{ duration: 0.5 }}
+              className="w-full relative block text-charcoal font-display font-semibold text-lg uppercase px-12 py-5 rounded-full hover:scale-[1.02] transition-transform disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed overflow-hidden text-center"
+            >
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={formState}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -20, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="block"
+                >
+                  {formState === 'idle' && t('contact.send')}
+                  {formState === 'submitting' && t('contact.sending')}
+                  {formState === 'success' && t('contact.sent')}
+                </motion.span>
+              </AnimatePresence>
+            </motion.button>
+          </div>
         </motion.form>
       </motion.div>
     </section>

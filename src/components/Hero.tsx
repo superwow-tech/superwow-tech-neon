@@ -15,41 +15,40 @@ export default function Hero() {
     gsap.from(".hero-text-line-1", {
       y: 100,
       opacity: 0,
-      duration: 1.5,
-      ease: "power4.out",
-      delay: 0.5
+      duration: 0.8,
+      ease: "power3.out",
+      delay: 0.1
     });
 
     gsap.from(".hero-text-line-2", {
       scale: 0.5,
       opacity: 0,
-      color: "#ffffff",
-      duration: 1.5,
-      ease: "power4.out",
-      delay: 0.8
+      duration: 0.8,
+      ease: "power3.out",
+      delay: 0.25
     });
 
     gsap.from(".hero-text-line-3", {
       y: 50,
       opacity: 0,
-      duration: 1.5,
-      ease: "power4.out",
-      delay: 1.1
+      duration: 0.8,
+      ease: "power3.out",
+      delay: 0.4
     });
 
     gsap.from(".hero-cta", {
       y: 30,
       opacity: 0,
-      duration: 1.5,
-      ease: "power4.out",
-      delay: 1.4
+      duration: 0.8,
+      ease: "power3.out",
+      delay: 0.55
     });
 
     gsap.from(".hero-scroll", {
       opacity: 0,
-      duration: 1.5,
-      ease: "power4.out",
-      delay: 1.7
+      duration: 0.8,
+      ease: "power3.out",
+      delay: 0.7
     });
 
     gsap.to(".hero-scroll-icon", {
@@ -83,16 +82,18 @@ export default function Hero() {
         </picture>
       </div>
 
-      <div className="z-10 text-center px-4 w-full mt-16">
-        <h1 className="font-display text-[26vw] md:text-[18vw] leading-[0.8] tracking-normal uppercase text-white flex flex-col items-center drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-          <div className="hero-text-line-1 px-4">
-            <span className="inline-block">WEB & AI</span>
+      {/* Added vertical padding and removed overflow-hidden to give the text-shadow room to bleed without clipping */}
+      <div className="z-10 text-center px-4 w-full mt-16 py-10 flex flex-col items-center justify-center max-w-[100vw]">
+        {/* Adjusted letter spacing (tracking-tight on mobile, tracking-[0.1em] on md+) and clamp sizes */}
+        <h1 className="font-display font-black text-[clamp(3rem,16vw,11rem)] leading-[0.85] md:leading-[1.1] tracking-tighter md:tracking-[0.1em] uppercase flex flex-col items-center w-full">
+          <div className="hero-text-line-1 px-1 md:px-4 break-words max-w-[100vw]">
+            <span className="inline-block text-neon-lime">WEB & AI</span>
           </div>
-          <div className="hero-text-line-2 px-4">
-            <span className="inline-block text-lime [text-shadow:0_0_40px_currentColor]">SOLUTIONS</span>
+          <div className="hero-text-line-2 px-1 md:px-4 break-words max-w-[100vw]">
+            <span className="inline-block text-neon-lime pt-2 md:pt-4">SOLUTIONS</span>
           </div>
         </h1>
-        <p className="hero-text-line-3 mt-8 font-sans text-sm font-bold md:text-3xl text-white/90 max-w-3xl mx-auto uppercase tracking-widest drop-shadow-md">
+        <p className="hero-text-line-3 mt-6 md:mt-8 font-sans text-[clamp(10px,3.5vw,16px)] sm:text-sm md:text-xl lg:text-2xl font-extrabold text-white max-w-5xl mx-auto uppercase tracking-wider md:tracking-[0.2em] text-glow-white px-2 w-full text-center">
           FASTER, SMARTER AND POWERED BY AI
         </p>
 
