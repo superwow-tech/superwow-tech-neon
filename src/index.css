@@ -8,12 +8,17 @@
   --color-lime: #cbf668;
   --color-pink: #f871c8;
   --color-cream: #f4f4f0;
-  
+
   --animate-marquee: marquee 30s linear infinite;
-  
+
   @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
   }
 }
 
@@ -42,8 +47,8 @@ body::before {
 }
 
 .text-neon-lime {
-  color: rgba(15, 20, 10, 0.95); 
-  text-shadow: 
+  color: rgba(15, 20, 10, 0.95);
+  text-shadow:
     0 0 1px var(--color-lime),
     0 0 2px var(--color-lime),
     0 0 4px var(--color-lime),
@@ -53,6 +58,25 @@ body::before {
     0 0 60px rgba(203, 246, 104, 0.4),
     0 0 100px rgba(203, 246, 104, 0.2),
     0 5px 20px rgba(0, 0, 0, 0.8);
+}
+
+.text-neon-lime-shadow {
+  color: transparent;
+  text-shadow:
+    0 0 1px var(--color-lime),
+    0 0 2px var(--color-lime),
+    0 0 4px var(--color-lime),
+    0 0 8px var(--color-lime),
+    0 0 15px rgba(203, 246, 104, 0.8),
+    0 0 30px rgba(203, 246, 104, 0.6),
+    0 0 60px rgba(203, 246, 104, 0.4),
+    0 0 100px rgba(203, 246, 104, 0.2),
+    0 5px 20px rgba(0, 0, 0, 0.8);
+}
+
+.text-neon-lime-text {
+  color: rgba(15, 20, 10, 0.95);
+  text-shadow: none;
 }
 
 .text-glow-white {

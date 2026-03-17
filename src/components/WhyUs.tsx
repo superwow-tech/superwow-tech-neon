@@ -36,12 +36,12 @@ export default function WhyUs() {
 
   return (
     <section id="works" ref={container} className="py-16 md:py-24 bg-charcoal text-white flex flex-col justify-center relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 md:px-12 w-full relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
         <div className="mb-16 md:mb-24">
-          <h2 className="font-sans text-4xl md:text-5xl font-normal tracking-tight mb-4 text-left">
+          <h2 className="font-display text-4xl md:text-5xl font-normal tracking-normal mb-4 text-left">
             {t('works.title')}
           </h2>
-          <p className="font-sans text-base md:text-lg text-white/50">
+          <p className="font-sans text-base md:text-lg text-white/70">
             {t('works.heading')}
           </p>
         </div>
@@ -60,7 +60,7 @@ export default function WhyUs() {
                   {step.title}
                 </h3>
               </div>
-              <span className="font-sans text-xs tracking-[0.2em] uppercase text-[#ad6d97] md:text-right">
+              <span className="font-sans text-xs tracking-[0.2em] uppercase text-lime md:text-right">
                 {step.tag}
               </span>
             </div>

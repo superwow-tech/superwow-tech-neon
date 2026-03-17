@@ -3,17 +3,34 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function CTA() {
-  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
-  const { t } = useLanguage();
+  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const { t, language } = useLanguage();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState('submitting');
-    // Simulate API call
-    setTimeout(() => {
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ from_name: name, from_email: email, message, language }),
+      });
+
+      if (!res.ok) throw new Error('Failed to send');
+
       setFormState('success');
+      setName('');
+      setEmail('');
+      setMessage('');
       setTimeout(() => setFormState('idle'), 3000);
-    }, 1500);
+    } catch {
+      setFormState('error');
+      setTimeout(() => setFormState('idle'), 3000);
+    }
   };
 
   const containerVariants = {
@@ -39,9 +56,12 @@ export default function CTA() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-[#110F1B] text-white flex flex-col justify-center relative overflow-hidden">
-      {/* Background radial gradient matches What We Build slightly */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(203,246,104,0.03)_0%,transparent_70%)]" />
+    <section id="contact" className="py-24 md:py-32 bg-charcoal text-white flex flex-col justify-center relative overflow-hidden">
+      {/* Background soft glowing blobs combining neon lime and pink */}
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-between opacity-70">
+        <div className="w-[30vw] h-[60%] md:h-[80%] bg-pink/20 rounded-full blur-[100px] md:blur-[150px] -translate-x-1/2" />
+        <div className="w-[30vw] h-[60%] md:h-[80%] bg-lime/20 rounded-full blur-[100px] md:blur-[150px] translate-x-1/2" />
+      </div>
 
       <motion.div
         variants={containerVariants}
@@ -52,8 +72,8 @@ export default function CTA() {
       >
         {/* Left Column - Massive Text */}
         <div className="flex-1 w-full lg:w-3/5 flex flex-col lg:justify-between min-h-0 lg:min-h-[400px]">
-          <motion.div variants={itemVariants}>
-            <h2 className="font-sans text-xs md:text-sm tracking-[0.2em] uppercase text-white/50">{t('contact.title')}</h2>
+          <motion.div variants={itemVariants} className="mb-8 lg:mb-12">
+            <h2 className="font-sans text-sm font-bold tracking-widest uppercase text-white/50">{t('contact.title')}</h2>
           </motion.div>
           
           <div className="mt-8 lg:mt-auto">
@@ -62,7 +82,7 @@ export default function CTA() {
               <span className="text-lime block">{t('contact.heading2')}</span>
             </motion.h3>
 
-            <motion.p variants={itemVariants} className="font-sans text-sm md:text-base text-white/70">
+            <motion.p variants={itemVariants} className="font-sans text-base md:text-lg text-white/70">
               {t('contact.desc')}
             </motion.p>
           </div>
@@ -76,6 +96,8 @@ export default function CTA() {
               type="text"
               id="name"
               required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="bg-white/5 rounded-full px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-lime transition-all font-sans text-sm md:text-base"
               placeholder="John Doe"
             />
@@ -87,6 +109,8 @@ export default function CTA() {
               type="email"
               id="email"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="bg-white/5 rounded-full px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-lime transition-all font-sans text-sm md:text-base"
               placeholder="john@example.com"
             />
@@ -98,6 +122,8 @@ export default function CTA() {
               id="message"
               required
               rows={4}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               className="bg-white/5 rounded-3xl px-6 py-4 text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-lime transition-all resize-none font-sans text-sm md:text-base"
               placeholder="..."
             />
@@ -110,6 +136,8 @@ export default function CTA() {
               animate={
                 formState === 'success'
                   ? { scale: [1, 1.02, 1], backgroundColor: ['#cbf668', '#4ade80', '#cbf668'] }
+                  : formState === 'error'
+                  ? { scale: [1, 1.02, 1], backgroundColor: ['#cbf668', '#f87171', '#cbf668'] }
                   : { scale: 1, backgroundColor: '#cbf668' }
               }
               transition={{ duration: 0.5 }}
@@ -127,6 +155,7 @@ export default function CTA() {
                   {formState === 'idle' && t('contact.send')}
                   {formState === 'submitting' && t('contact.sending')}
                   {formState === 'success' && t('contact.sent')}
+                  {formState === 'error' && t('contact.error')}
                 </motion.span>
               </AnimatePresence>
             </motion.button>

@@ -85,24 +85,38 @@ export default function Hero() {
       {/* Added vertical padding and removed overflow-hidden to give the text-shadow room to bleed without clipping */}
       <div className="z-10 text-center px-4 w-full mt-16 py-10 flex flex-col items-center justify-center max-w-[100vw]">
         {/* Adjusted letter spacing (tracking-tight on mobile, tracking-[0.1em] on md+) and clamp sizes */}
-        <h1 className="font-display font-black text-[clamp(3rem,16vw,11rem)] leading-[0.85] md:leading-[1.1] tracking-tighter md:tracking-[0.1em] uppercase flex flex-col items-center w-full">
-          <div className="hero-text-line-1 px-1 md:px-4 break-words max-w-[100vw]">
-            <span className="inline-block text-neon-lime">WEB & AI</span>
+        <h1 className="font-display font-black text-[clamp(3rem,16vw,11rem)] leading-[0.85] md:leading-[1.1] tracking-tighter md:tracking-[0.1em] uppercase flex flex-col items-center w-full relative">
+
+          {/* Shadow Layer (renders behind all text so no letters get washed out) */}
+          <div className="absolute inset-x-0 top-0 flex flex-col items-center w-full pointer-events-none z-0" aria-hidden="true">
+            <div className="hero-text-line-1 px-1 md:px-4 break-words max-w-[100vw] will-change-[transform,opacity]">
+              <span className="inline-block text-neon-lime-shadow will-change-transform">WEB & AI</span>
+            </div>
+            <div className="hero-text-line-2 px-1 md:px-4 break-words max-w-[100vw] will-change-[transform,opacity]">
+              <span className="inline-block text-neon-lime-shadow pt-2 md:pt-4 will-change-transform">SOLUTIONS</span>
+            </div>
           </div>
-          <div className="hero-text-line-2 px-1 md:px-4 break-words max-w-[100vw]">
-            <span className="inline-block text-neon-lime pt-2 md:pt-4">SOLUTIONS</span>
+
+          {/* Text Layer (renders on top of all shadows) */}
+          <div className="relative z-10 flex flex-col items-center w-full">
+            <div className="hero-text-line-1 px-1 md:px-4 break-words max-w-[100vw] will-change-[transform,opacity]">
+              <span className="inline-block text-neon-lime-text will-change-transform">WEB & AI</span>
+            </div>
+            <div className="hero-text-line-2 px-1 md:px-4 break-words max-w-[100vw] will-change-[transform,opacity]">
+              <span className="inline-block text-neon-lime-text pt-2 md:pt-4 will-change-transform">SOLUTIONS</span>
+            </div>
           </div>
+
         </h1>
-        <p className="hero-text-line-3 mt-6 md:mt-8 font-sans text-[clamp(10px,3.5vw,16px)] sm:text-sm md:text-xl lg:text-2xl font-extrabold text-white max-w-5xl mx-auto uppercase tracking-wider md:tracking-[0.2em] text-glow-white px-2 w-full text-center">
-          FASTER, SMARTER AND POWERED BY AI
+        <p className="hero-text-line-3 mt-6 md:mt-8 font-sans text-[clamp(10px,3.5vw,16px)] sm:text-sm md:text-xl lg:text-2xl font-extrabold text-white max-w-5xl mx-auto uppercase tracking-wider md:tracking-[0.2em] text-glow-white px-2 w-full text-center will-change-[transform,opacity]">
+          FASTER. SMARTER. AI-POWERED.
         </p>
 
       </div>
 
       {/* Scroll Indicator */}
-      <div className="hero-scroll md:hidden absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-pink/80 hover:text-pink transition-colors cursor-pointer drop-shadow-md">
-        <span className="text-sm uppercase tracking-[0.2em] font-bold">Scroll</span>
-        <ChevronDown className="hero-scroll-icon w-6 h-6" />
+      <div className="hero-scroll md:hidden absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center text-pink/80 hover:text-pink transition-colors cursor-pointer drop-shadow-md">
+        <ChevronDown className="hero-scroll-icon w-10 h-10 md:w-12 md:h-12" />
       </div>
     </section>
   );
